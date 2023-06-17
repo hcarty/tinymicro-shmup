@@ -1,9 +1,9 @@
 	
 
-	Tiny Dungeon (1.0)
+	Pixel Shmup (1.1)
 
 	Created/distributed by Kenney (www.kenney.nl)
-	Creation date: 05-07-2022
+	Creation date: 01-11-2021
 
 			------------------------------
 

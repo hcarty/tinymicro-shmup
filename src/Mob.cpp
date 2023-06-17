@@ -27,21 +27,17 @@ orxBOOL Mob::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, orxBOD
 
 void Mob::Update(const orxCLOCK_INFO &_rstInfo)
 {
-  // Get a target to chase
-  orxConfig_PushSection("Runtime");
-  orxVECTOR target = orxVECTOR_0;
-  orxConfig_GetVector("Target", &target);
-  orxConfig_PopSection();
+  orxAABOX frustum;
+  auto camera = orxCamera_Get("MainCamera");
+  orxASSERT(camera);
+  orxCamera_GetFrustum(camera, &frustum);
 
-  // Move toward our target
-  orxVECTOR position = orxVECTOR_0;
+  orxVECTOR position;
   GetPosition(position, orxTRUE);
 
-  orxVECTOR speed = orxVECTOR_0;
-  orxVector_Sub(&speed, &target, &position);
-  orxVector_Normalize(&speed, &speed);
-  PushConfigSection(orxTRUE);
-  orxVector_Mulf(&speed, &speed, orxConfig_GetFloat("Speed"));
-  PopConfigSection();
-  SetSpeed(speed);
+  if (!orxAABox_IsInside(&frustum, &position))
+  {
+    // Disappear once we're outside of the camera viewport
+    SetLifeTime(0);
+  }
 }

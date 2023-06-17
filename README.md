@@ -1,12 +1,12 @@
-# Tiny Micro Survivor
+# Tiny Micro Shmup
 
-A tiny micro game where the player wanders around, trying to avoid a constant
-stream of pursuing mobs.
+A tiny micro game where the player shoots things with a plane, trying to avoid
+a constant stream of angry planes and their shots.
 
-![Screenshot showing a knight pursued by mobs](screenshot/screenshot.png)
+![Screenshot showing a plane in the game](screenshot/screenshot.png)
 
-- Score is based on how long the player survives
-- Health is shown beneath the player and slowly replenishes over time
+- Score is based on ???
+- Health is shown ??? and slowly replenishes over time
 
 ## Libraries and assets
 

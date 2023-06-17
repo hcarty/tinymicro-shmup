@@ -7,6 +7,7 @@
 #include "tinymicro.h"
 #undef __SCROLL_IMPL__
 
+#include "AttackProjectile.h"
 #include "Character.h"
 #include "HealthBar.h"
 #include "Mob.h"
@@ -64,6 +65,7 @@ void tinymicro::Exit()
 void tinymicro::BindObjects()
 {
   // Bind classes to the config sections
+  ScrollBindObject<AttackProjectile>("AttackProjectile");
   ScrollBindObject<Character>("Character");
   ScrollBindObject<HealthBar>("HealthBar");
   ScrollBindObject<Mob>("Mob");

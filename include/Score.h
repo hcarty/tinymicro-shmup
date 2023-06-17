@@ -11,5 +11,4 @@ protected:
   void Update(const orxCLOCK_INFO &_rstInfo);
 
 private:
-  orxFLOAT current = 0.0;
 };
