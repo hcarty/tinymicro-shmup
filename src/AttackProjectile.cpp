@@ -11,12 +11,17 @@ void AttackProjectile::OnDelete()
 
 orxBOOL AttackProjectile::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, orxBODY_PART *_pstColliderPart, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
 {
-  if (orxString_Compare(orxBody_GetPartName(_pstColliderPart), "MobBodyPart") == 0)
+  orxASSERT(_poCollider, "Collision with non-ScrollObject");
+
+  SetLifeTime(0.0);
+
+  _poCollider->PushConfigSection();
+  if (orxConfig_HasValue("OnDestruction"))
   {
-    SetLifeTime(0.0);
     orxCOMMAND_VAR _result;
-    orxCommand_Evaluate("Game.AddScore 1", &_result);
+    orxCommand_Evaluate(orxConfig_GetString("OnDestruction"), &_result);
   }
+  _poCollider->PopConfigSection();
 
   return orxTRUE;
 }

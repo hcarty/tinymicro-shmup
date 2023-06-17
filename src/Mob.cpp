@@ -17,7 +17,7 @@ void Mob::OnDelete()
 
 orxBOOL Mob::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, orxBODY_PART *_pstColliderPart, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
 {
-  if (orxString_Compare(orxBody_GetPartName(_pstColliderPart), "AttackProjectileBodyPart") == 0)
+  if (orxString_SearchString(orxBody_GetPartName(_pstColliderPart), "AttackProjectileBodyPart") != orxNULL)
   {
     SetLifeTime(0.0);
   }
