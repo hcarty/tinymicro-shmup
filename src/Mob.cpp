@@ -15,14 +15,12 @@ void Mob::OnDelete()
 {
 }
 
-orxBOOL Mob::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, orxBODY_PART *_pstColliderPart, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
+void Mob::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, orxBODY_PART *_pstColliderPart, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
 {
   if (orxString_SearchString(orxBody_GetPartName(_pstColliderPart), "AttackProjectileBodyPart") != orxNULL)
   {
     SetLifeTime(0.0);
   }
-
-  return orxTRUE;
 }
 
 void Mob::Update(const orxCLOCK_INFO &_rstInfo)

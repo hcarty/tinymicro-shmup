@@ -9,7 +9,7 @@ void AttackProjectile::OnDelete()
 {
 }
 
-orxBOOL AttackProjectile::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, orxBODY_PART *_pstColliderPart, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
+void AttackProjectile::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, orxBODY_PART *_pstColliderPart, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
 {
   orxASSERT(_poCollider, "Collision with non-ScrollObject");
 
@@ -22,8 +22,6 @@ orxBOOL AttackProjectile::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_ps
     orxCommand_Evaluate(orxConfig_GetString("OnDestruction"), &_result);
   }
   _poCollider->PopConfigSection();
-
-  return orxTRUE;
 }
 
 void AttackProjectile::Update(const orxCLOCK_INFO &_rstInfo)

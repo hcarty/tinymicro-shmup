@@ -45,7 +45,7 @@ void Character::Update(const orxCLOCK_INFO &_rstInfo)
   PopConfigSection();
 }
 
-orxBOOL Character::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, orxBODY_PART *_pstColliderPart, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
+void Character::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, orxBODY_PART *_pstColliderPart, const orxVECTOR &_rvPosition, const orxVECTOR &_rvNormal)
 {
   auto colliderPartName = orxBody_GetPartName(_pstColliderPart);
   if (orxConfig_HasSection(colliderPartName))
@@ -58,6 +58,4 @@ orxBOOL Character::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPart, 
     auto healthBar = ScrollCast<HealthBar *, ScrollObject *>(GetChildByName("HealthBar"));
     healthBar->Add(static_cast<orxFLOAT>(impact));
   }
-
-  return orxTRUE;
 }
