@@ -35,7 +35,15 @@ void Mob::Update(const orxCLOCK_INFO &_rstInfo)
 
   if (!orxAABox_IsInside(&frustum, &position))
   {
-    // Disappear once we're outside of the camera viewport
-    SetLifeTime(0);
+    // Disappear shortly after we leave the camera viewport
+    SetLifeTime(2);
+  }
+  else
+  {
+    // Reset life time in case we leave and then re-enter the viewport
+    if (GetLifeTime() > 0)
+    {
+      SetLifeTime(-1);
+    }
   }
 }
