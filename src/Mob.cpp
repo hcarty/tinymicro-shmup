@@ -32,18 +32,17 @@ void Mob::Update(const orxCLOCK_INFO &_rstInfo)
 
   orxVECTOR position;
   GetPosition(position, orxTRUE);
+  auto surviving = GetLifeTime() < 0;
+  auto inside = orxAABox_IsInside(&frustum, &position);
 
-  if (!orxAABox_IsInside(&frustum, &position))
+  if (surviving && !inside)
   {
     // Disappear shortly after we leave the camera viewport
     SetLifeTime(2);
   }
-  else
+  else if (!surviving && inside)
   {
-    // Reset life time in case we leave and then re-enter the viewport
-    if (GetLifeTime() > 0)
-    {
-      SetLifeTime(-1);
-    }
+    // Reset lifetime in case we leave and then re-enter the viewport
+    SetLifeTime(-1);
   }
 }
