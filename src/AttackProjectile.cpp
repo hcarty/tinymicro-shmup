@@ -19,7 +19,7 @@ void AttackProjectile::OnCollide(ScrollObject *_poCollider, orxBODY_PART *_pstPa
   if (orxConfig_HasValue("OnDestruction"))
   {
     orxCOMMAND_VAR _result;
-    orxCommand_Evaluate(orxConfig_GetString("OnDestruction"), &_result);
+    orxCommand_EvaluateWithGUID(orxConfig_GetString("OnDestruction"), _poCollider->GetGUID(), &_result);
   }
   _poCollider->PopConfigSection();
 }
